@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Face Detection Web App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="app">
+        <div class="head_app">
+            <div class="logo_app">
+                <h1 class="name_app">Nhận diện cảm xúc</h1>
+            </div>
+            <ul class="list_head">
+                <li class="list_icon"><a class="list_link" href="#">Home</a></li>
+                <li class="list_icon"><a class="list_link" href="#">About</a></li>
+                <li class="list_icon"><a class="list_link" href="#">Register</a></li>
+                <li class="list_icon"><a class="list_link" href="#">Login</a></li>
+            </ul>
+        </div>
+
+        <div class="body_app">
+            <div class="menu_setting">
+                <ul class="list_menu">
+                    <li class="list_item_menu"><a class="list_link_menu" href="#">Home</a></li>
+                    <li class="list_item_menu list_link_menu1">chuc nang
+                        <ul class="menu_center">
+                            <li class="list_item_center"><a class="list_link_center" href="#">web can</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">hinh anh</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">video</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">camera truc tiep</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">ket qua danh gia</a></li>
+                        </ul>
+                    </li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#">danh sach phong hoc</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#">huan luyen mo hinh</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#">tien su ly du lieu</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#">cai dat cau hinh</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#">huong dan</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#">gioi thieu</a></li>
+                </ul>
+            </div>
+            <div class="sidebar_app">
+                <!-- Menu của bạn -->
+                 <div class="contents" id="content">
+                    <!-- Nội dung từ index.html sẽ được load vào đây -->
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+
+        <div class="footer_app">
+            <!-- Footer của bạn -->
+            <p class="text_footer">Copyright © 2024. Developed by AI student team.</p>
+        </div>
+    </div>
+
+{#client-side script#}
+    <script>
+        // Bắt sự kiện click vào list_link_menu1
+        document.querySelector('.list_link_menu1').addEventListener('click', function(event) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
+            this.classList.toggle('active');  // Toggle class "active" khi click vào a
+        });
+        // Bắt sự kiện click ở bất kỳ nơi nào khác
+        document.addEventListener('click', function(event) {
+            var listLink = document.querySelector('.list_link_menu1');
+            var menu = document.querySelector('.menu_center');
+
+            // Nếu click ra ngoài .list_link_menu1 và menu, ẩn menu
+            if (!listLink.contains(event.target) && !menu.contains(event.target)) {
+                listLink.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>

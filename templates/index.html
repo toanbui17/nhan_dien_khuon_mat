@@ -1,0 +1,17 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="body_index">
+        <div class="box_index">
+            <div class="box_name_index">
+                <h1 class="name_index">Face Detection Web App</h1>
+            </div>
+            <div class="box_image">
+                <img class="image_link" src="{{ url_for('video_feed') }}" id="videoStream">
+            </div>
+            <button class="button btn_s" onclick="startDetection()">Start</button>
+            <button class="button btn_c" onclick="stopDetection()">Stop</button>
+        </div>
+    </div>
+{% endblock %}
