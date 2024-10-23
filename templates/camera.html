@@ -1,0 +1,22 @@
+<!-- camera.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="body_camera">
+        <div class="box_camera">
+            <div class="box_name_camera">
+                <h1 class="name_camera">camera truc tiep</h1>
+            </div>
+            <div class="box_class_camera">
+                danh sach phong
+            </div>
+            <div class="box_camera">
+                <img class="image_link" src="{{ url_for('video_feed') }}" id="videoStream">
+            </div>
+            <button class="button btn_s" onclick="startDetection()">Start camera</button>
+            <button class="button btn_s" onclick="startDetection()">Start chup camera</button>
+            <button class="button btn_s" onclick="startDetection()">cap nhat danh sach</button>
+            <button class="button btn_c" onclick="stopDetection()">Stop</button>
+        </div>
+    </div>
+{% endblock %}

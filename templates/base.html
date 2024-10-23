@@ -7,6 +7,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/camera.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/image.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/webcam.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -26,13 +30,13 @@
         <div class="body_app">
             <div class="menu_setting">
                 <ul class="list_menu">
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">Home</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="{{ url_for('home.home') }}">Home</a></li>
                     <li class="list_item_menu list_link_menu1">chuc nang <i class="fas fa-caret-down"></i>
                         <ul class="menu_center">
-                            <li class="list_item_center"><a class="list_link_center" href="#">web can</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">hinh anh</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">video</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">camera truc tiep</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('index.webcam') }}">web cam</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('image.image') }}">hinh anh</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('video.video') }}">video</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('camera.camera') }}">camera truc tiep</a></li>
                             <li class="list_item_center"><a class="list_link_center" href="#">ket qua danh gia</a></li>
                         </ul>
                     </li>
@@ -57,22 +61,27 @@
     </div>
 
 {#client-side script#}
-    <script>
-        // Bắt sự kiện click vào list_link_menu1
-        document.querySelector('.list_link_menu1').addEventListener('click', function(event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
-            this.classList.toggle('active');  // Toggle class "active" khi click vào a
-        });
-        // Bắt sự kiện click ở bất kỳ nơi nào khác
-        document.addEventListener('click', function(event) {
-            var listLink = document.querySelector('.list_link_menu1');
-            var menu = document.querySelector('.menu_center');
+<script>
+    // Bắt sự kiện click vào list_link_menu1
+    document.querySelector('.list_link_menu1').addEventListener('click', function(event) {
+        // Chỉ ngăn chặn khi click vào chính thẻ <li> chứ không phải các thẻ <a> bên trong menu
+        if (event.target === this) {
+            event.preventDefault(); // Ngăn chặn hành động mặc định khi click vào <li>
+            this.classList.toggle('active');  // Toggle class "active" khi click vào <li>
+        }
+    });
 
-            // Nếu click ra ngoài .list_link_menu1 và menu, ẩn menu
-            if (!listLink.contains(event.target) && !menu.contains(event.target)) {
-                listLink.classList.remove('active');
-            }
-        });
-    </script>
+    // Bắt sự kiện click ở bất kỳ nơi nào khác
+    document.addEventListener('click', function(event) {
+        var listLink = document.querySelector('.list_link_menu1');
+        var menu = document.querySelector('.menu_center');
+
+        // Nếu click ra ngoài .list_link_menu1 và menu, ẩn menu
+        if (!listLink.contains(event.target) && !menu.contains(event.target)) {
+            listLink.classList.remove('active');
+        }
+    });
+</script>
+
 </body>
 </html>
