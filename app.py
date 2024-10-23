@@ -2,6 +2,10 @@ from flask import Flask, render_template, Response
 from face_detection import detect_faces, draw_faces
 
 from views.home_view import home_bp  # Import blueprint từ home_view
+from views.index_view import index_bp  # import blueprint từ webcam
+from views.image_view import image_bp  # Import blueprint từ image
+from views.video_view import video_bp  # import blueprint từ video
+from views.camera_view import camera_bp  # import blueprint từ camera
 
 import cv2
 
@@ -10,6 +14,10 @@ camera = cv2.VideoCapture(0)
 
 # Đăng ký các blueprint với ứng dụng chính
 app.register_blueprint(home_bp)  # Đăng ký home blueprint
+app.register_blueprint(index_bp)  # Đăng ký webcam blueprint
+app.register_blueprint(image_bp)  # Đăng ký image blueprint
+app.register_blueprint(video_bp)  # Đăng ký video blueprint
+app.register_blueprint(camera_bp)  # Đăng ký camera blueprint
 
 #đuược thay tế bởi (app.register_blueprint(home)  # Đăng ký home blueprint)
 # @app.route('/')

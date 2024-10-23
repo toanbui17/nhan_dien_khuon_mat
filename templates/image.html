@@ -1,15 +1,17 @@
-<!-- webcam.html -->
+<!-- index.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="body_webcam">
-        <div class="box_webcam">
-            <div class="box_name_webcam">
-                <h1 class="name_wecan">Face Detection Web App</h1>
+    <div class="body_image">
+        <div class="box_image">
+            <div class="box_name_image">
+                <h1 class="name_image">nhan dien hinh anh</h1>
             </div>
             <div class="box_image">
                 <img class="image_link" src="{{ url_for('video_feed') }}" id="videoStream">
             </div>
+            <input type="number" id="fileUpload" accept="number">
+            <input type="file" id="fileUpload" accept="image/*">
             <button class="button btn_s" onclick="startDetection()">Start</button>
             <button class="button btn_c" onclick="stopDetection()">Stop</button>
         </div>

@@ -1,0 +1,20 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="body_video">
+        <div class="box_video">
+            <div class="box_name_video">
+                <h1 class="name_video">nhan dien qua video</h1>
+            </div>
+            <div class="box_image">
+                <img class="image_link" src="{{ url_for('video_feed') }}" id="videoStream">
+            </div>
+            <input type="file" id="fileUpload" accept="image/*">
+            <button class="button btn_s" onclick="startDetection()">Start video da chon</button>
+            <button class="button btn_s" onclick="startDetection()">Start video gian tiep</button>
+            <button class="button btn_s" onclick="startDetection()">Start chup video</button>
+            <button class="button btn_c" onclick="stopDetection()">Stop</button>
+        </div>
+    </div>
+{% endblock %}
