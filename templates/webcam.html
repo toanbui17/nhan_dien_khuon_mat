@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Nhận diện qua webcam</h2>
+    <div>
+        <img src="{{ url_for('video_feed') }}" style="width: 100%; max-width: 600px;"/>
+    </div>
+{% endblock %}
