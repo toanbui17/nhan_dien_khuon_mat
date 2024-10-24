@@ -1,11 +1,13 @@
 from flask import Flask, render_template, Response
-from face_detection import detect_faces, draw_faces
+# from face_detection import detect_faces, draw_faces
 
 from views.home_view import home_bp  # Import blueprint từ home_view
 from views.index_view import index_bp  # import blueprint từ webcam
 from views.image_view import image_bp  # Import blueprint từ image
 from views.video_view import video_bp  # import blueprint từ video
 from views.camera_view import camera_bp  # import blueprint từ camera
+
+from webcam import video_feed  # Import video_feed từ webcam.py
 
 import cv2
 
@@ -19,29 +21,10 @@ app.register_blueprint(image_bp)  # Đăng ký image blueprint
 app.register_blueprint(video_bp)  # Đăng ký video blueprint
 app.register_blueprint(camera_bp)  # Đăng ký camera blueprint
 
-#đuược thay tế bởi (app.register_blueprint(home)  # Đăng ký home blueprint)
-# @app.route('/')
-# def index():
-#     return render_template('index.html')  # Trang HTML hiển thị video
-
-def generate_frames():
-    while True:
-        success, frame = camera.read()
-        if not success:
-            break
-        else:
-            faces = detect_faces(frame)  # Nhận diện khuôn mặt
-            frame = draw_faces(frame, faces)  # Vẽ khung nhận diện
-
-            # Encode the frame as JPEG and return it
-            ret, buffer = cv2.imencode('.jpg', frame)
-            frame = buffer.tobytes()
-            yield (b'--frame\r\n'
-                   b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-
 @app.route('/video_feed')
-def video_feed():
-    return Response(generate_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
+def video_feed_route():
+    return video_feed(camera)  # Sử dụng video_feed từ webcam.py
+
 
 if __name__ == '__main__':
     app.run(debug=True)
