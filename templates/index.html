@@ -1,17 +1,11 @@
-<!-- webcam.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="body_webcam">
-        <div class="box_webcam">
-            <div class="box_name_webcam">
-                <h1 class="name_wecan">Face Detection Web App</h1>
+    <div class="body_home">
+        <div class="box_home">
+            <div class="box_name_home">
+                <h1 class="name_home">Trang chủ</h1>
             </div>
-            <div class="box_image">
-                <img class="image_link" src="{{ url_for('video_feed_route') }}" id="videoStream">
-            </div>
-            <button class="button btn_s" onclick="startDetection()">Start</button>
-            <button class="button btn_c" onclick="stopDetection()">Stop</button>
         </div>
     </div>
 {% endblock %}

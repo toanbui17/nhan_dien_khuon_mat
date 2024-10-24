@@ -30,58 +30,48 @@
         <div class="body_app">
             <div class="menu_setting">
                 <ul class="list_menu">
-                    <li class="list_item_menu"><a class="list_link_menu" href="{{ url_for('home.home') }}">Home</a></li>
-                    <li class="list_item_menu list_link_menu1">chuc nang <i class="fas fa-caret-down"></i>
+                    <li class="list_item_menu"><a class="list_link_menu" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="list_item_menu list_link_menu1">Chức năng <i class="fas fa-caret-down"></i>
                         <ul class="menu_center">
-                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('index.webcam') }}">web cam</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('image.image') }}">hinh anh</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('video.video') }}">video</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('camera.camera') }}">camera truc tiep</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">ket qua danh gia</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('video_feed') }}">Web cam</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Hình ảnh</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Video</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Camera trực tiếp</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Kết quả đánh giá</a></li>
                         </ul>
                     </li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa-solid fa-gear"></i> cau hinh</a></li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa-solid fa-book"></i> huong dan</a></li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa fa-solid fa-note"></i> gioi thieu</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa-solid fa-gear"></i> Cấu hình</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa-solid fa-book"></i> Hướng dẫn</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa fa-solid fa-note"></i> Giới thiệu</a></li>
                 </ul>
             </div>
             <div class="sidebar_app">
-                <!-- Menu của bạn -->
-                 <div class="contents" id="content">
-                    <!-- Nội dung từ index.html sẽ được load vào đây -->
+                <div class="contents" id="content">
                     {% block content %}{% endblock %}
                 </div>
             </div>
         </div>
 
         <div class="footer_app">
-            <!-- Footer của bạn -->
             <p class="text_footer">Copyright © 2024. Developed by AI student team.</p>
         </div>
     </div>
 
-{#client-side script#}
-<script>
-    // Bắt sự kiện click vào list_link_menu1
-    document.querySelector('.list_link_menu1').addEventListener('click', function(event) {
-        // Chỉ ngăn chặn khi click vào chính thẻ <li> chứ không phải các thẻ <a> bên trong menu
-        if (event.target === this) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định khi click vào <li>
-            this.classList.toggle('active');  // Toggle class "active" khi click vào <li>
-        }
-    });
+    <script>
+        document.querySelector('.list_link_menu1').addEventListener('click', function(event) {
+            if (event.target === this) {
+                event.preventDefault();
+                this.classList.toggle('active');
+            }
+        });
 
-    // Bắt sự kiện click ở bất kỳ nơi nào khác
-    document.addEventListener('click', function(event) {
-        var listLink = document.querySelector('.list_link_menu1');
-        var menu = document.querySelector('.menu_center');
-
-        // Nếu click ra ngoài .list_link_menu1 và menu, ẩn menu
-        if (!listLink.contains(event.target) && !menu.contains(event.target)) {
-            listLink.classList.remove('active');
-        }
-    });
-</script>
-
+        document.addEventListener('click', function(event) {
+            var listLink = document.querySelector('.list_link_menu1');
+            var menu = document.querySelector('.menu_center');
+            if (!listLink.contains(event.target) && !menu.contains(event.target)) {
+                listLink.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
