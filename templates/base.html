@@ -7,6 +7,11 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/camera.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/image.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/webcam.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="app">
@@ -17,60 +22,52 @@
             <ul class="list_head">
                 <li class="list_icon"><a class="list_link" href="#">Home</a></li>
                 <li class="list_icon"><a class="list_link" href="#">About</a></li>
-                <li class="list_icon"><a class="list_link" href="#">Register</a></li>
-                <li class="list_icon"><a class="list_link" href="#">Login</a></li>
+                <li class="list_icon"><a class="list_link" href="#"><i class="fas fa-user-plus"></i> Sign-Up</a></li>
+                <li class="list_icon"><a class="list_link" href="#"><i class="fas fa-user"></i> Log-In</a></li>
             </ul>
         </div>
 
         <div class="body_app">
             <div class="menu_setting">
                 <ul class="list_menu">
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">Home</a></li>
-                    <li class="list_item_menu list_link_menu1">chuc nang
+                    <li class="list_item_menu"><a class="list_link_menu" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="list_item_menu list_link_menu1">Chức năng <i class="fas fa-caret-down"></i>
                         <ul class="menu_center">
-                            <li class="list_item_center"><a class="list_link_center" href="#">web can</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">hinh anh</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">video</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">camera truc tiep</a></li>
-                            <li class="list_item_center"><a class="list_link_center" href="#">ket qua danh gia</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="{{ url_for('video_feed') }}">Web cam</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Hình ảnh</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Video</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Camera trực tiếp</a></li>
+                            <li class="list_item_center"><a class="list_link_center" href="#">Kết quả đánh giá</a></li>
                         </ul>
                     </li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">danh sach phong hoc</a></li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">huan luyen mo hinh</a></li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">tien su ly du lieu</a></li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">cai dat cau hinh</a></li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">huong dan</a></li>
-                    <li class="list_item_menu"><a class="list_link_menu" href="#">gioi thieu</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa-solid fa-gear"></i> Cấu hình</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa-solid fa-book"></i> Hướng dẫn</a></li>
+                    <li class="list_item_menu"><a class="list_link_menu" href="#"><i class="fa fa-solid fa-note"></i> Giới thiệu</a></li>
                 </ul>
             </div>
             <div class="sidebar_app">
-                <!-- Menu của bạn -->
-                 <div class="contents" id="content">
-                    <!-- Nội dung từ index.html sẽ được load vào đây -->
+                <div class="contents" id="content">
                     {% block content %}{% endblock %}
                 </div>
             </div>
         </div>
 
         <div class="footer_app">
-            <!-- Footer của bạn -->
             <p class="text_footer">Copyright © 2024. Developed by AI student team.</p>
         </div>
     </div>
 
-{#client-side script#}
     <script>
-        // Bắt sự kiện click vào list_link_menu1
         document.querySelector('.list_link_menu1').addEventListener('click', function(event) {
-            event.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
-            this.classList.toggle('active');  // Toggle class "active" khi click vào a
+            if (event.target === this) {
+                event.preventDefault();
+                this.classList.toggle('active');
+            }
         });
-        // Bắt sự kiện click ở bất kỳ nơi nào khác
+
         document.addEventListener('click', function(event) {
             var listLink = document.querySelector('.list_link_menu1');
             var menu = document.querySelector('.menu_center');
-
-            // Nếu click ra ngoài .list_link_menu1 và menu, ẩn menu
             if (!listLink.contains(event.target) && !menu.contains(event.target)) {
                 listLink.classList.remove('active');
             }
